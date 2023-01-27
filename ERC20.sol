@@ -104,8 +104,10 @@ contract ERC20 is IERC20 {
      * - `spender` cannot be the zero address.
      */
     function approve(address spender, uint256 amount) public virtual override returns (bool) {
-         /* <------ Your code goes here ------->
-         */
+        //Internal approve function already exists
+        //Are we allowed to use that?
+        _approve(msg.sender, spender, amount);
+        return true; 
     }
 
     /**
