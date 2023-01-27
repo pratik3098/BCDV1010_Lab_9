@@ -81,6 +81,9 @@ contract ERC20 is IERC20 {
      * - the caller must have a balance of at least `amount`.
      */
     function transfer(address to, uint256 amount) public virtual override returns (bool) {
+        address sender = msg.sender;
+        _transfer(sender, to, amount);
+        return true;
     }
 
     /**
@@ -122,8 +125,8 @@ contract ERC20 is IERC20 {
      * `amount`.
      */
     function transferFrom(address from, address to, uint256 amount) public virtual override returns (bool) {
-          /* <------ Your code goes here ------->
-         */
+          _transfer(from, to, amount);
+          return true;
     }
 
     /**
