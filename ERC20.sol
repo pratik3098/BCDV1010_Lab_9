@@ -81,10 +81,6 @@ contract ERC20 is IERC20 {
      * - the caller must have a balance of at least `amount`.
      */
     function transfer(address to, uint256 amount) public virtual override returns (bool) {
-    
-         /* <------ Your code goes here ------->
-         */
-       
     }
 
     /**
@@ -189,8 +185,12 @@ contract ERC20 is IERC20 {
      */
     function _transfer(address from, address to, uint256 amount) internal virtual {
        
-         /* <------ Your code goes here ------->
-         */
+        require(from != address(0), "Invalid from address");
+        require(to != address(0), "Invalid to address");
+        require(_balances[from] >= amount, "Insufficient funds");
+
+        _balances[from] -= amount;
+        _balances[to] += amount;
     }
 
     /** @dev Creates `amount` tokens and assigns them to `account`, increasing
