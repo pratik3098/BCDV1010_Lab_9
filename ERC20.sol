@@ -125,8 +125,9 @@ contract ERC20 is IERC20 {
      * `amount`.
      */
     function transferFrom(address from, address to, uint256 amount) public virtual override returns (bool) {
-          _transfer(from, to, amount);
-          return true;
+        _spendAllowance(from, msg.sender, amount);
+        _transfer(from, to, amount);
+        return true;
     }
 
     /**
